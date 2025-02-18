@@ -6,21 +6,21 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1200</width>
-    <height>800</height>
+    <width>800</width>
+    <height>550</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QFrame" name="verticalFrame">
+   <widget class="QFrame" name="window">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1200</width>
-      <height>800</height>
+      <width>800</width>
+      <height>550</height>
      </rect>
     </property>
     <property name="lineWidth">
@@ -76,21 +76,21 @@
             <number>1</number>
            </property>
            <item>
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="pushButton_open_file">
              <property name="text">
               <string>File</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_4">
+            <widget class="QPushButton" name="pushButton_save">
              <property name="text">
               <string>Save</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="pushButton_view">
              <property name="text">
               <string>View</string>
              </property>
@@ -122,7 +122,7 @@
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout_6">
            <item>
-            <widget class="QPushButton" name="pushButton_3">
+            <widget class="QPushButton" name="pushButton_info">
              <property name="text">
               <string>Info</string>
              </property>
@@ -212,35 +212,41 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="QPushButton" name="pushButton_5">
+             <widget class="QPushButton" name="pushButton_plot">
               <property name="text">
                <string>Побудувати графік</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_7">
+             <widget class="QPushButton" name="pushButton_3">
               <property name="text">
                <string>Аналіз даних</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_6">
+             <widget class="QPushButton" name="pushButton_2">
               <property name="text">
                <string>Налаштування графіку</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_8">
+             <widget class="QPushButton" name="pushButton_4">
               <property name="text">
                <string>Налаштування графіку</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_9">
+             <widget class="QPushButton" name="pushButton_5">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>Оновити дані</string>
               </property>
@@ -311,21 +317,106 @@
                <attribute name="title">
                 <string>Home</string>
                </attribute>
-               <widget class="QGraphicsView" name="graphicsView">
+               <widget class="QFrame" name="horizontalFrame">
                 <property name="geometry">
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>939</width>
-                  <height>684</height>
+                  <width>268</width>
+                  <height>306</height>
                  </rect>
                 </property>
+                <layout class="QVBoxLayout" name="verticalLayout_6">
+                 <item>
+                  <widget class="QFrame" name="verticalFrame">
+                   <layout class="QVBoxLayout" name="verticalLayout_3">
+                    <property name="spacing">
+                     <number>10</number>
+                    </property>
+                    <property name="leftMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="topMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="rightMargin">
+                     <number>0</number>
+                    </property>
+                    <property name="bottomMargin">
+                     <number>0</number>
+                    </property>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QListWidget" name="listWidget"/>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="horizontalFrame">
+                   <layout class="QHBoxLayout" name="horizontalLayout_2">
+                    <item>
+                     <widget class="QPushButton" name="pushButton_x_axis">
+                      <property name="text">
+                       <string>x_axis</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="pushButton_y_axis">
+                      <property name="text">
+                       <string>y_axis</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
                </widget>
-              </widget>
-              <widget class="QWidget" name="tab_2">
-               <attribute name="title">
-                <string>Data_1</string>
-               </attribute>
+               <widget class="QWidget" name="horizontalLayoutWidget">
+                <property name="geometry">
+                 <rect>
+                  <x>280</x>
+                  <y>10</y>
+                  <width>221</width>
+                  <height>261</height>
+                 </rect>
+                </property>
+                <layout class="QHBoxLayout" name="horizontalLayout_7">
+                 <item>
+                  <widget class="QFrame" name="verticalFrame">
+                   <layout class="QVBoxLayout" name="verticalLayout_4">
+                    <item alignment="Qt::AlignHCenter">
+                     <widget class="QLabel" name="label">
+                      <property name="text">
+                       <string>X-AXIS</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QListWidget" name="listWidget_x_axis"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QFrame" name="verticalFrame_2">
+                   <layout class="QVBoxLayout" name="verticalLayout_5">
+                    <item alignment="Qt::AlignHCenter">
+                     <widget class="QLabel" name="label_2">
+                      <property name="text">
+                       <string>Y-AXIS</string>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QListWidget" name="listWidget_y_axis"/>
+                    </item>
+                   </layout>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
               </widget>
              </widget>
             </item>

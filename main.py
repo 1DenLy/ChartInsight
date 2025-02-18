@@ -1,22 +1,42 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QTabWidget, QWidget, QVBoxLayout
+from PyQt5.QtWidgets import QApplication, QMainWindow, QFileDialog, QListWidgetItem
 from PyQt5 import uic
-import pyqtgraph as pg
+import pandas as pd
 
-from modules.data_loader import load_data
+from modules.data_loader import load_data, populate_list_view
 from modules.data_validator import validate_data
+from modules.data_visualizer import plot_selected_columns, open_plot_in_window
+from modules.window_manager import save_window_settings, load_window_settings, close_tab, resize_window
 
 class DataAnalyzerApp(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("UI/main_window.ui", self)
+        load_window_settings(self)
 
-        self.loadButton.clicked.connect(self.load_data)
-        self.tabWidget = QTabWidget(self)
-        self.setCentralWidget(self.tabWidget)
+        # Connect buttons to their respective functions
+        self.pushButton_open_file.clicked.connect(self.load_data_wrapper)
+        self.pushButton_x_axis.clicked.connect(self.select_x_axis)
+        self.pushButton_y_axis.clicked.connect(self.select_y_axis)
+        self.pushButton_plot.clicked.connect(self.plot_selected_columns_wrapper)
+        self.pushButton_3.clicked.connect(self.open_plot_in_window_wrapper)
+        self.tabWidget.setTabsClosable(True)
+        self.tabWidget.tabCloseRequested.connect(lambda index: close_tab(self, index))
 
-    def load_data(self):
-        """Function to select and load a file."""
+        self.current_fig = None
+        self.df = None
+
+    def resizeEvent(self, event):
+        """Handle window resize event."""
+        resize_window(self, event)
+
+    def closeEvent(self, event):
+        """Handle window close event."""
+        save_window_settings(self)
+        super().closeEvent(event)
+
+    def load_data_wrapper(self):
+        """Wrapper to call load_data and populate_list_view."""
         options = QFileDialog.Options()
         file_name, _ = QFileDialog.getOpenFileName(self, "Select a file", "", 
                                                 "CSV files (*.csv);;Excel files (*.xlsx);;JSON files (*.json)", options=options)
@@ -26,23 +46,45 @@ class DataAnalyzerApp(QMainWindow):
             if self.df is not None:
                 is_valid, issues = validate_data(self.df)
                 for issue in issues:
-                    print(issue)  # Виводимо повідомлення про перевірку
+                    print(issue)  # Print validation messages
 
                 if is_valid:
-                    print(self.df.head())  # Виводимо перші рядки для перевірки
-                    self.create_new_tab(file_name)
+                    print(self.df.head())  # Print first few rows for verification
+                    populate_list_view(self.listWidget, self.df)
 
-    def create_new_tab(self, title):
-        """Create a new tab with a plot."""
-        new_tab = QWidget()
-        layout = QVBoxLayout(new_tab)
-        plot_widget = pg.PlotWidget()
-        layout.addWidget(plot_widget)
-        self.tabWidget.addTab(new_tab, title)
-        self.tabWidget.setCurrentWidget(new_tab)
+    def select_x_axis(self):
+        """Select the column for the x-axis."""
+        selected_items = self.listWidget.selectedItems()
+        for item in selected_items:
+            if item.text() not in [self.listWidget_x_axis.item(i).text() for i in range(self.listWidget_x_axis.count())]:
+                self.listWidget_x_axis.addItem(item.text())
+            else:
+                for i in range(self.listWidget_x_axis.count()):
+                    if self.listWidget_x_axis.item(i).text() == item.text():
+                        self.listWidget_x_axis.takeItem(i)
+                        break
 
-        # Example plot, you can customize it based on your data
-        plot_widget.plot([1, 2, 3, 4, 5], [10, 20, 30, 40, 50])
+    def select_y_axis(self):
+        """Select the column for the y-axis."""
+        selected_items = self.listWidget.selectedItems()
+        for item in selected_items:
+            if item.text() not in [self.listWidget_y_axis.item(i).text() for i in range(self.listWidget_y_axis.count())]:
+                self.listWidget_y_axis.addItem(item.text())
+            else:
+                for i in range(self.listWidget_y_axis.count()):
+                    if self.listWidget_y_axis.item(i).text() == item.text():
+                        self.listWidget_y_axis.takeItem(i)
+                        break
+
+    def plot_selected_columns_wrapper(self):
+        """Wrapper to call plot_selected_columns with the correct parameters."""
+        x_cols = [self.listWidget_x_axis.item(i).text() for i in range(self.listWidget_x_axis.count())]
+        y_cols = [self.listWidget_y_axis.item(i).text() for i in range(self.listWidget_y_axis.count())]
+        self.current_fig = plot_selected_columns(self.df, x_cols, y_cols, self.tabWidget)
+
+    def open_plot_in_window_wrapper(self):
+        """Wrapper to call open_plot_in_window with the current figure."""
+        open_plot_in_window(self.current_fig)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

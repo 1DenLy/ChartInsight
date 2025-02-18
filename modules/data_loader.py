@@ -1,5 +1,5 @@
 import pandas as pd
-
+from PyQt5.QtWidgets import QListWidgetItem
 
 def load_data(file_path):
     """
@@ -16,13 +16,21 @@ def load_data(file_path):
         elif file_path.endswith(".json"):
             df = pd.read_json(file_path)
         else:
-            print("❌ Unsupported file format.")
+            print("Unsupported file format.")
             return None
 
-        print(f"✅ File successfully loaded: {file_path}")
-        print(f"📊 Data shape: {df.shape}")  # Displays (rows, columns)
+        print(f"File successfully loaded: {file_path}")
+        print(f"Data shape: {df.shape}")  # Displays (rows, columns)
         return df
 
     except Exception as e:
-        print(f"❌ Error loading file: {e}")
+        print(f"Error loading file: {e}")
         return None
+
+def populate_list_view(list_widget, df):
+    """Populate the list view with column names."""
+    list_widget.clear()
+    for col in df.columns:
+        item = QListWidgetItem(col)
+        list_widget.addItem(item)
+
