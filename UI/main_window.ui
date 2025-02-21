@@ -90,6 +90,13 @@
             </widget>
            </item>
            <item>
+            <widget class="QPushButton" name="pushButton_load">
+             <property name="text">
+              <string>Load</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <widget class="QPushButton" name="pushButton_view">
              <property name="text">
               <string>View</string>
@@ -219,7 +226,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QPushButton" name="pushButton_open_plot">
               <property name="text">
                <string>Аналіз даних</string>
               </property>
@@ -233,14 +240,14 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_4">
+             <widget class="QPushButton" name="pushButton_plot_settings">
               <property name="text">
                <string>Налаштування графіку</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_5">
+             <widget class="QPushButton" name="pushButton_data_update">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
                 <horstretch>0</horstretch>

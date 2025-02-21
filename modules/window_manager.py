@@ -1,23 +1,20 @@
-import json
+from PyQt5.QtCore import QSettings
 
 def save_window_settings(window):
-    """Save window size and position on close."""
-    settings = {
-        'size': (window.size().width(), window.size().height()),
-        'position': (window.pos().x(), window.pos().y())
-    }
-    with open('window_settings.json', 'w') as f:
-        json.dump(settings, f)
+    """Save window size and position on close using QSettings."""
+    settings = QSettings("YourCompany", "YourApp")
+    settings.setValue("size", window.size())
+    settings.setValue("position", window.pos())
 
 def load_window_settings(window):
-    """Load window size and position."""
-    try:
-        with open('window_settings.json', 'r') as f:
-            settings = json.load(f)
-            window.resize(settings['size'][0], settings['size'][1])
-            window.move(settings['position'][0], settings['position'][1])
-    except (FileNotFoundError, json.JSONDecodeError):
-        pass
+    """Load window size and position using QSettings."""
+    settings = QSettings("YourCompany", "YourApp")
+    size = settings.value("size")
+    position = settings.value("position")
+    if size:
+        window.resize(size)
+    if position:
+        window.move(position)
 
 def close_tab(window, index):
     """Close the tab by index."""
