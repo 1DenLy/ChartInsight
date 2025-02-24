@@ -28,19 +28,19 @@
     </property>
     <layout class="QVBoxLayout" name="frame_main">
      <property name="spacing">
-      <number>0</number>
+      <number>1</number>
      </property>
      <property name="leftMargin">
-      <number>0</number>
+      <number>1</number>
      </property>
      <property name="topMargin">
-      <number>0</number>
+      <number>1</number>
      </property>
      <property name="rightMargin">
-      <number>0</number>
+      <number>1</number>
      </property>
      <property name="bottomMargin">
-      <number>0</number>
+      <number>1</number>
      </property>
      <item>
       <widget class="QFrame" name="frame_up">
@@ -50,8 +50,11 @@
          <height>30</height>
         </size>
        </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
        <property name="lineWidth">
-        <number>0</number>
+        <number>1</number>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout">
         <property name="spacing">
@@ -180,7 +183,7 @@
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
-          <widget class="QFrame" name="verticalFrame">
+          <widget class="QFrame" name="frame_buttons">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -207,57 +210,112 @@
              <number>10</number>
             </property>
             <property name="leftMargin">
-             <number>0</number>
+             <number>10</number>
             </property>
             <property name="topMargin">
              <number>20</number>
             </property>
             <property name="rightMargin">
-             <number>0</number>
+             <number>2</number>
             </property>
             <property name="bottomMargin">
              <number>0</number>
             </property>
             <item>
-             <widget class="QPushButton" name="pushButton_plot">
-              <property name="text">
-               <string>Побудувати графік</string>
-              </property>
-             </widget>
+             <layout class="QHBoxLayout" name="frame_pushButton_plot">
+              <item>
+               <widget class="QLabel" name="icon_pushButton_plot">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_plot">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Побудувати Графік</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_open_plot">
-              <property name="text">
-               <string>Аналіз даних</string>
-              </property>
-             </widget>
+             <layout class="QHBoxLayout" name="frame_pushButton_open_plot">
+              <item>
+               <widget class="QLabel" name="icon_pushButton_open_plot">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_open_plot">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Аналіз даних</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_2">
-              <property name="text">
-               <string>Налаштування графіку</string>
-              </property>
-             </widget>
+             <layout class="QHBoxLayout" name="frame_pushButton_plot_settings">
+              <item>
+               <widget class="QLabel" name="icon_pushButton_plot_settings">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_plot_settings">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Налаштування графіку</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_plot_settings">
-              <property name="text">
-               <string>Налаштування графіку</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_data_update">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Ignored" vsizetype="Fixed">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Оновити дані</string>
-              </property>
-             </widget>
+             <layout class="QHBoxLayout" name="frame_pushButton_data_update">
+              <item>
+               <widget class="QLabel" name="icon_pushButton_data_update">
+                <property name="text">
+                 <string/>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="pushButton_data_update">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Оновити дані</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
             <item>
              <spacer name="verticalSpacer">
@@ -303,7 +361,7 @@
                <enum>QTabWidget::Rounded</enum>
               </property>
               <property name="currentIndex">
-               <number>0</number>
+               <number>1</number>
               </property>
               <property name="elideMode">
                <enum>Qt::ElideLeft</enum>
@@ -425,42 +483,17 @@
                 </layout>
                </widget>
               </widget>
+              <widget class="QWidget" name="tab">
+               <attribute name="title">
+                <string>Page</string>
+               </attribute>
+              </widget>
              </widget>
             </item>
            </layout>
           </widget>
          </widget>
         </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QFrame" name="frame_down">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>60</height>
-        </size>
-       </property>
-       <property name="lineWidth">
-        <number>0</number>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
        </layout>
       </widget>
      </item>

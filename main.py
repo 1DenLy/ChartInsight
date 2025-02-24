@@ -5,26 +5,26 @@ from PyQt5 import uic
 from modules.data_loader import load_data, populate_list_view
 from modules.data_validator import validate_data
 from modules.data_visualizer import plot_selected_columns, open_plot_in_window
-from modules.window_manager import save_window_settings, load_window_settings, close_tab, resize_window
+from modules.window_manager import save_window_settings, load_window_settings, close_tab, resize_window, load_and_set_icons
 from modules.database_manager import save_data_to_database, load_data_from_database
+from modules.settings_manager import open_settings_tab
 
 class DataAnalyzerApp(QMainWindow):
     def __init__(self):
         super().__init__()
         uic.loadUi("UI/main_window.ui", self)
         load_window_settings(self)
+        load_and_set_icons(self)
 
         # Connect buttons to their respective functions
         self.pushButton_open_file.clicked.connect(self.load_data_wrapper)
-
         self.pushButton_x_axis.clicked.connect(self.select_x_axis)
         self.pushButton_y_axis.clicked.connect(self.select_y_axis)
-
         self.pushButton_plot.clicked.connect(self.plot_selected_columns_wrapper)
         self.pushButton_open_plot.clicked.connect(self.open_plot_in_window_wrapper)
-        
         self.pushButton_save.clicked.connect(lambda: save_data_to_database(self))
         self.pushButton_load.clicked.connect(lambda: load_data_from_database(self))
+        self.pushButton_settings.clicked.connect(lambda: open_settings_tab(self.tabWidget))
         self.tabWidget.setTabsClosable(True)
         self.tabWidget.tabCloseRequested.connect(lambda index: close_tab(self, index))
 
@@ -76,7 +76,7 @@ class DataAnalyzerApp(QMainWindow):
             if item.text() not in [self.listWidget_y_axis.item(i).text() for i in range(self.listWidget_y_axis.count())]:
                 self.listWidget_y_axis.addItem(item.text())
             else:
-                for i in range(self.listWidget_y_axis.count()):
+                for i in range (self.listWidget_y_axis.count()):
                     if self.listWidget_y_axis.item(i).text() == item.text():
                         self.listWidget_y_axis.takeItem(i)
                         break
