@@ -1,0 +1,9 @@
+
+#frame_pushButton_plot, 
+#frame_pushButton_open_plot, 
+#frame_pushButton_plot_settings, 
+#frame_pushButton_data_update {
+    border: 1px solid #000; /* Black border */
+    border-radius: 24px; /* Rounded corners */
+    padding: 10px; /* Optional padding */
+}

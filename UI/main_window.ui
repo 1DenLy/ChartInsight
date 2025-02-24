@@ -31,27 +31,27 @@
       <number>1</number>
      </property>
      <property name="leftMargin">
-      <number>1</number>
+      <number>2</number>
      </property>
      <property name="topMargin">
-      <number>1</number>
+      <number>2</number>
      </property>
      <property name="rightMargin">
-      <number>1</number>
+      <number>2</number>
      </property>
      <property name="bottomMargin">
-      <number>1</number>
+      <number>2</number>
      </property>
      <item>
       <widget class="QFrame" name="frame_up">
        <property name="minimumSize">
         <size>
          <width>0</width>
-         <height>30</height>
+         <height>20</height>
         </size>
        </property>
        <property name="frameShape">
-        <enum>QFrame::StyledPanel</enum>
+        <enum>QFrame::Box</enum>
        </property>
        <property name="lineWidth">
         <number>1</number>
@@ -75,8 +75,20 @@
         <item>
          <widget class="QFrame" name="horizontalFrame">
           <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <property name="spacing">
+            <number>2</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
            <property name="rightMargin">
-            <number>1</number>
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
            </property>
            <item>
             <widget class="QPushButton" name="pushButton_open_file">
@@ -126,7 +138,7 @@
          <widget class="QFrame" name="horizontalFrame_2">
           <property name="minimumSize">
            <size>
-            <width>30</width>
+            <width>0</width>
             <height>0</height>
            </size>
           </property>
@@ -207,10 +219,10 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <property name="spacing">
-             <number>10</number>
+             <number>2</number>
             </property>
             <property name="leftMargin">
-             <number>10</number>
+             <number>2</number>
             </property>
             <property name="topMargin">
              <number>20</number>
@@ -222,100 +234,117 @@
              <number>0</number>
             </property>
             <item>
-             <layout class="QHBoxLayout" name="frame_pushButton_plot">
-              <item>
-               <widget class="QLabel" name="icon_pushButton_plot">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButton_plot">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Побудувати Графік</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <widget class="QFrame" name="frame_pushButton_plot">
+              <layout class="QHBoxLayout" name="layout_pushButton_plot">
+               <item>
+                <widget class="QLabel" name="icon_pushButton_plot">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_plot">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Побудувати Графік</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="frame_pushButton_open_plot">
-              <item>
-               <widget class="QLabel" name="icon_pushButton_open_plot">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButton_open_plot">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Аналіз даних</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <widget class="QFrame" name="frame_pushButton_open_plot">
+              <property name="mouseTracking">
+               <bool>false</bool>
+              </property>
+              <layout class="QHBoxLayout" name="layout_pushButton_open_plot">
+               <item>
+                <widget class="QLabel" name="icon_pushButton_open_plot">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_open_plot">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Аналіз даних</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="frame_pushButton_plot_settings">
-              <item>
-               <widget class="QLabel" name="icon_pushButton_plot_settings">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButton_plot_settings">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Налаштування графіку</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <widget class="QFrame" name="frame_pushButton_plot_settings">
+              <property name="cursor">
+               <cursorShape>ArrowCursor</cursorShape>
+              </property>
+              <layout class="QHBoxLayout" name="layout_pushButton_plot_settings">
+               <item>
+                <widget class="QLabel" name="icon_pushButton_plot_settings">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_plot_settings">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Налаштування графіку</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
             </item>
             <item>
-             <layout class="QHBoxLayout" name="frame_pushButton_data_update">
-              <item>
-               <widget class="QLabel" name="icon_pushButton_data_update">
-                <property name="text">
-                 <string/>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButton_data_update">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="text">
-                 <string>Оновити дані</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
+             <widget class="QFrame" name="frame_pushButton_data_update">
+              <property name="cursor">
+               <cursorShape>ArrowCursor</cursorShape>
+              </property>
+              <layout class="QHBoxLayout" name="layout_pushButton_data_update">
+               <item>
+                <widget class="QLabel" name="icon_pushButton_data_update">
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="pushButton_data_update">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Оновити дані</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
             </item>
             <item>
              <spacer name="verticalSpacer">
@@ -329,6 +358,42 @@
                </size>
               </property>
              </spacer>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_7">
+              <item alignment="Qt::AlignHCenter">
+               <widget class="QLabel" name="label_3">
+                <property name="text">
+                 <string>Останні відкриті файли</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <layout class="QVBoxLayout" name="verticalLayout_8">
+                <item>
+                 <widget class="QLabel" name="label_6">
+                  <property name="text">
+                   <string>TextLabel</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_4">
+                  <property name="text">
+                   <string>TextLabel</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="label_5">
+                  <property name="text">
+                   <string>TextLabel</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </item>
+             </layout>
             </item>
            </layout>
           </widget>
@@ -361,7 +426,7 @@
                <enum>QTabWidget::Rounded</enum>
               </property>
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <property name="elideMode">
                <enum>Qt::ElideLeft</enum>
@@ -381,111 +446,6 @@
               <widget class="QWidget" name="Start_tab">
                <attribute name="title">
                 <string>Home</string>
-               </attribute>
-               <widget class="QFrame" name="horizontalFrame">
-                <property name="geometry">
-                 <rect>
-                  <x>0</x>
-                  <y>0</y>
-                  <width>268</width>
-                  <height>306</height>
-                 </rect>
-                </property>
-                <layout class="QVBoxLayout" name="verticalLayout_6">
-                 <item>
-                  <widget class="QFrame" name="verticalFrame">
-                   <layout class="QVBoxLayout" name="verticalLayout_3">
-                    <property name="spacing">
-                     <number>10</number>
-                    </property>
-                    <property name="leftMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="topMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="rightMargin">
-                     <number>0</number>
-                    </property>
-                    <property name="bottomMargin">
-                     <number>0</number>
-                    </property>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QListWidget" name="listWidget"/>
-                 </item>
-                 <item>
-                  <widget class="QFrame" name="horizontalFrame">
-                   <layout class="QHBoxLayout" name="horizontalLayout_2">
-                    <item>
-                     <widget class="QPushButton" name="pushButton_x_axis">
-                      <property name="text">
-                       <string>x_axis</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="pushButton_y_axis">
-                      <property name="text">
-                       <string>y_axis</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-               <widget class="QWidget" name="horizontalLayoutWidget">
-                <property name="geometry">
-                 <rect>
-                  <x>280</x>
-                  <y>10</y>
-                  <width>221</width>
-                  <height>261</height>
-                 </rect>
-                </property>
-                <layout class="QHBoxLayout" name="horizontalLayout_7">
-                 <item>
-                  <widget class="QFrame" name="verticalFrame">
-                   <layout class="QVBoxLayout" name="verticalLayout_4">
-                    <item alignment="Qt::AlignHCenter">
-                     <widget class="QLabel" name="label">
-                      <property name="text">
-                       <string>X-AXIS</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QListWidget" name="listWidget_x_axis"/>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QFrame" name="verticalFrame_2">
-                   <layout class="QVBoxLayout" name="verticalLayout_5">
-                    <item alignment="Qt::AlignHCenter">
-                     <widget class="QLabel" name="label_2">
-                      <property name="text">
-                       <string>Y-AXIS</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QListWidget" name="listWidget_y_axis"/>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </widget>
-              <widget class="QWidget" name="tab">
-               <attribute name="title">
-                <string>Page</string>
                </attribute>
               </widget>
              </widget>
