@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-from PyQt5.QtWidgets import QFileDialog, QInputDialog
+from PyQt5.QtWidgets import QFileDialog
 from modules.data_loader import populate_list_view
 
 class FileManager:
