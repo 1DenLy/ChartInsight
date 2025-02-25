@@ -105,3 +105,11 @@ class LogicManager:
         list_widget.clear()
         for item in items:
             list_widget.addItem(item)
+
+    def get_main_axis(self):
+        """Get the current main axis."""
+        return self.main_axis
+
+    def get_selected_data(self):
+        """Get the selected data."""
+        return [self.list_changed_data.item(i).text() for i in range(self.list_changed_data.count())]

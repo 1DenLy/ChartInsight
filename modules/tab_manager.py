@@ -19,7 +19,15 @@ class TabManager:
         self.analysis_options = {
             "trend_line": False,
             "median": False,
-            # Add other analysis options here
+            "average": False,
+            "min_max": False,
+            "moving_average": False,
+            "sorting_main_axis": False,
+            "sorting_values_graph": False,
+            "filling_in_blank_values_average": False,
+            "replacing_emissions": False,
+            "delete_repetitions": False,
+            "decomposition": False
         }
         self.file_size = self.get_file_size()
         self.missing_values_count = self.get_missing_values_count()
@@ -61,13 +69,6 @@ class TabManager:
             outliers_count += (outliers == -1).sum()
         return outliers_count
 
-    def set_main_axis(self, axis):
-        """Set the main axis for the plot."""
-        self.main_axis = axis
-
-    def add_selected_data(self, data):
-        """Add selected data for the plot."""
-        self.selected_data.append(data)
 
     def set_analysis_option(self, option, value):
         """Set the analysis option."""
@@ -129,6 +130,20 @@ class TabManager:
         # Connect comboBox_main_ox change event to update lists and set main axis
         self.logic_manager.comboBox_main_ox.currentIndexChanged.connect(lambda: self.logic_manager.set_main_axis(self.logic_manager.comboBox_main_ox.currentText()))
 
+    def connect_analysis_options(self, interface):
+        """Connect checkboxes to analysis options."""
+        interface.checkBox_trend_line.stateChanged.connect(lambda state: self.set_analysis_option("trend_line", state == 2))
+        interface.checkBox_median.stateChanged.connect(lambda state: self.set_analysis_option("median", state == 2))
+        interface.checkBox_average.stateChanged.connect(lambda state: self.set_analysis_option("average", state == 2))
+        interface.checkBox_min_max.stateChanged.connect(lambda state: self.set_analysis_option("min_max", state == 2))
+        interface.checkBox_moving_average.stateChanged.connect(lambda state: self.set_analysis_option("moving_average", state == 2))
+        interface.checkBox_sorting_main_axis.stateChanged.connect(lambda state: self.set_analysis_option("sorting_main_axis", state == 2))
+        interface.checkBox_sorting_values_graph.stateChanged.connect(lambda state: self.set_analysis_option("sorting_values_graph", state == 2))
+        interface.checkBox_filling_in_blank_values_average.stateChanged.connect(lambda state: self.set_analysis_option("filling_in_blank_values_average", state == 2))
+        interface.checkBox_replacing_emissions.stateChanged.connect(lambda state: self.set_analysis_option("replacing_emissions", state == 2))
+        interface.checkBox_delete_repetitions.stateChanged.connect(lambda state: self.set_analysis_option("delete_repetitions", state == 2))
+        interface.checkBox_decomposition.stateChanged.connect(lambda state: self.set_analysis_option("decomposition", state == 2))
+
     def create_new_tab(self, tabWidget, tab_name, file_path):
         """Create a new tab with the new interface."""
         new_tab = QWidget()
@@ -144,9 +159,18 @@ class TabManager:
         # Initialize LogicManager with comboBox and lists
         self.initialize_logic_manager(new_interface.comboBox_main_ox, new_interface.list_all_data, new_interface.list_changed_data)
 
-        
+        self.connect_analysis_options(new_interface)
 
+        
     def plot_selected_columns(self):
         """Create and display a plot using GraphConstructor."""
+        self.main_axis = self.logic_manager.get_main_axis()
+        self.selected_data = self.logic_manager.get_selected_data()
+
+        print(f"main axis: {self.main_axis}")
+        print(f"selected data: {self.selected_data}")
+        print(f"analysis options: {self.analysis_options}")
+        print("-----------------------------------")
+
         graph_constructor = GraphConstructor(self.analysis_options, self.main_axis, self.selected_data)
-        graph_constructor.plot_selected_columns(self.df, [self.main_axis], self.selected_data, self.window.tabWidget)
+        graph_constructor.plot_selected_columns(self.df, [self.main_axis], self.selected_data)

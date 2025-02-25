@@ -289,35 +289,6 @@
              </widget>
             </item>
             <item>
-             <widget class="QFrame" name="frame_pushButton_plot_settings">
-              <property name="cursor">
-               <cursorShape>ArrowCursor</cursorShape>
-              </property>
-              <layout class="QHBoxLayout" name="layout_pushButton_plot_settings">
-               <item>
-                <widget class="QLabel" name="icon_pushButton_plot_settings">
-                 <property name="text">
-                  <string/>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QPushButton" name="pushButton_plot_settings">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="text">
-                  <string>Налаштування графіку</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item>
              <widget class="QFrame" name="frame_pushButton_data_update">
               <property name="cursor">
                <cursorShape>ArrowCursor</cursorShape>

@@ -25,9 +25,9 @@ class DataAnalyzerApp(QMainWindow):
 
         # Connect buttons to their respective functions
         self.pushButton_open_file.clicked.connect(self.load_data_wrapper)
-        #self.pushButton_plot.clicked.connect(self.plot_selected_columns)
+        self.pushButton_plot.clicked.connect(self.plot_active_tab)
         self.pushButton_save.clicked.connect(self.file_manager.save_data_to_file)
-        self.pushButton_load.clicked.connect(self.file_manager.load_data_from_file)
+        self.pushButton_load.clicked.connect(self.load_data_from_file)
         self.pushButton_settings.clicked.connect(lambda: open_settings_tab(self.tabWidget))
         self.tabWidget.setTabsClosable(True)
         self.tabWidget.tabCloseRequested.connect(lambda index: self.window_manager.close_tab(index))
@@ -68,6 +68,24 @@ class DataAnalyzerApp(QMainWindow):
                     convert_date_columns(self.df)
                     self.create_new_tab(os.path.basename(file_name), file_name)
 
+    def load_data_from_file(self):
+        """Load data from a file into the application."""
+        options = QFileDialog.Options()
+        file_path, _ = QFileDialog.getOpenFileName(self, "Load from file", "data/", 
+                                                   "CSV files (*.csv);;Excel files (*.xlsx);;JSON files (*.json);;All Files (*)", options=options)
+        if file_path:
+            self.df = load_data(file_path)  # Load data
+
+            if self.df is not None:
+                is_valid, issues = validate_data(self.df)
+                for issue in issues:
+                    print(issue)  # Print validation messages
+
+                if is_valid:
+                    print(self.df.head())  # Print first few rows for verification
+                    convert_date_columns(self.df)
+                    self.create_new_tab(os.path.basename(file_path), file_path)
+
     def create_new_tab(self, tab_name, file_path):
         """Create a new tab with the new interface."""
         # Create a TabManager instance for the new tab
@@ -78,7 +96,15 @@ class DataAnalyzerApp(QMainWindow):
         # Create the new tab using TabManager
         tab_manager.create_new_tab(self.tabWidget, tab_name, file_path)
 
-    
+    def plot_active_tab(self):
+        """Plot the selected columns for the active tab."""
+        current_tab_index = self.tabWidget.currentIndex()
+        if current_tab_index != -1:
+            tab_name = self.tabWidget.tabText(current_tab_index)
+            if tab_name in self.tab_managers:
+                tab_manager = self.tab_managers[tab_name]
+                tab_manager.plot_selected_columns()
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = DataAnalyzerApp()
