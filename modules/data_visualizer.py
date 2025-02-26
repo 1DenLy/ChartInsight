@@ -82,4 +82,5 @@ class GraphConstructor:
         ax.legend()
         ax.grid(True)
         plt.show()
+        return fig  # Return the plot figure
 

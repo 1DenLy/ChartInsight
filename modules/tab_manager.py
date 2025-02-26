@@ -173,4 +173,5 @@ class TabManager:
         print("-----------------------------------")
 
         graph_constructor = GraphConstructor(self.analysis_options, self.main_axis, self.selected_data)
-        graph_constructor.plot_selected_columns(self.df, [self.main_axis], self.selected_data)
+        fig = graph_constructor.plot_selected_columns(self.df, [self.main_axis], self.selected_data)
+        return fig  # Return the plot figure

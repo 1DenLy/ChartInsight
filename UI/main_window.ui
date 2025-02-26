@@ -111,13 +111,6 @@
              </property>
             </widget>
            </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_view">
-             <property name="text">
-              <string>View</string>
-             </property>
-            </widget>
-           </item>
           </layout>
          </widget>
         </item>
@@ -147,13 +140,6 @@
             <widget class="QPushButton" name="pushButton_info">
              <property name="text">
               <string>Info</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButton_settings">
-             <property name="text">
-              <string>Settings</string>
              </property>
             </widget>
            </item>
@@ -329,42 +315,6 @@
                </size>
               </property>
              </spacer>
-            </item>
-            <item>
-             <layout class="QVBoxLayout" name="verticalLayout_7">
-              <item alignment="Qt::AlignHCenter">
-               <widget class="QLabel" name="label_3">
-                <property name="text">
-                 <string>Останні відкриті файли</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <layout class="QVBoxLayout" name="verticalLayout_8">
-                <item>
-                 <widget class="QLabel" name="label_6">
-                  <property name="text">
-                   <string>TextLabel</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_4">
-                  <property name="text">
-                   <string>TextLabel</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLabel" name="label_5">
-                  <property name="text">
-                   <string>TextLabel</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-             </layout>
             </item>
            </layout>
           </widget>

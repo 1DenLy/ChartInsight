@@ -19,6 +19,7 @@ def load_data(file_path):
             print("Unsupported file format.")
             return None
 
+        df.attrs['file_path'] = file_path  # Store the file path in the DataFrame attributes
         print(f"File successfully loaded: {file_path}")
         print(f"Data shape: {df.shape}")  # Displays (rows, columns)
         return df

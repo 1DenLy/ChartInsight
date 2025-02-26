@@ -29,12 +29,15 @@ class DataAnalyzerApp(QMainWindow):
         self.pushButton_save.clicked.connect(self.file_manager.save_data_to_file)
         self.pushButton_load.clicked.connect(self.load_data_from_file)
         self.pushButton_settings.clicked.connect(lambda: open_settings_tab(self.tabWidget))
+        self.pushButton_open_plot.clicked.connect(self.open_last_plot)
+        self.pushButton_data_update.clicked.connect(self.update_data_from_file)
         self.tabWidget.setTabsClosable(True)
         self.tabWidget.tabCloseRequested.connect(lambda index: self.window_manager.close_tab(index))
 
         self.current_fig = None
         self.df = None
         self.tab_managers = {}
+        self.last_plot = None  # Temporary variable to store the last created plot
 
     def apply_stylesheet(self):
         """Apply the stylesheet to the application."""
@@ -101,9 +104,47 @@ class DataAnalyzerApp(QMainWindow):
         current_tab_index = self.tabWidget.currentIndex()
         if current_tab_index != -1:
             tab_name = self.tabWidget.tabText(current_tab_index)
-            if tab_name in self.tab_managers:
+            if (tab_name in self.tab_managers):
                 tab_manager = self.tab_managers[tab_name]
-                tab_manager.plot_selected_columns()
+                self.last_plot = tab_manager.plot_selected_columns()  # Save the plot to the temporary variable
+
+    def open_last_plot(self):
+        """Open the last created plot."""
+        if self.last_plot:
+            self.last_plot.show()
+        else:
+            print("No plot available to open.")
+
+    def update_data_from_file(self):
+        """Update data from the currently opened file."""
+        if self.df is not None:
+            file_path = self.df.attrs.get('file_path')
+            if file_path:
+                self.df = load_data(file_path)  # Reload data
+                if self.df is not None:
+                    is_valid, issues = validate_data(self.df)
+                    for issue in issues:
+                        print(issue)  # Print validation messages
+
+                    if is_valid:
+                        print(self.df.head())  # Print first few rows for verification
+                        convert_date_columns(self.df)
+                        current_tab_index = self.tabWidget.currentIndex()
+                        if current_tab_index != -1:
+                            tab_name = self.tabWidget.tabText(current_tab_index)
+                            if tab_name in self.tab_managers:
+                                tab_manager = self.tab_managers[tab_name]
+                                tab_manager.df = self.df  # Update the DataFrame in TabManager
+                                tab_manager.data_columns = tab_manager.get_data_columns()  # Update data columns
+                                tab_widget = self.tabWidget.widget(current_tab_index)
+                                tab_manager.set_label_values(tab_widget)  # Update labels
+                                tab_manager.populate_main_axis_combobox(tab_manager.logic_manager.comboBox_main_ox)  # Update comboBox
+                                tab_manager.populate_list_all_data(tab_manager.logic_manager.list_all_data, tab_manager.data_columns)  # Update list
+                                print("Data updated successfully.")
+            else:
+                print("No file path found in the DataFrame attributes.")
+        else:
+            print("No data to update.")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
